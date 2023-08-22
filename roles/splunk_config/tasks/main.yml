@@ -1,0 +1,14 @@
+---
+- name: Deploy inputs.conf
+  copy:
+    src: inputs.conf
+    dest: "/opt/splunk/etc/apps/search/inputs.conf"
+  notify: Restart Splunk
+
+
+# Extend this to deploy other configuration files as needed.
+#- name: Deploy *.conf
+#  copy:
+#  src: *.conf
+#  dest: "/opt/splunk/etc/apps/search/*.conf"
+#  notify: Restart Splunk

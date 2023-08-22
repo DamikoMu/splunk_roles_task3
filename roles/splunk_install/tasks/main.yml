@@ -1,0 +1,21 @@
+---
+- name: Download Splunk 9.1
+  get_url:
+    url: "https://download.splunk.com/products/splunk/releases/9.1.0.2/linux/splunk-9.1.0.2-b6436b649711-Linux-x86_64.tgz&wget=true"
+    dest: "/tmp/splunk-9.1.0.tgz"
+
+- name: Extract Splunk Archive
+  unarchive:
+    src: "/tmp/splunk-9.1.0.tgz"
+    dest: "/opt/"
+    remote_src: yes
+
+- name: Start Splunk on Boot
+  command:
+    cmd: "/opt/splunk/bin/splunk enable boot-start"
+    creates: "/etc/init.d/splunk"
+
+- name: Start Splunk
+  command:
+    cmd: "/opt/splunk/bin/splunk start --accept-license"
+    creates: "/opt/splunk/var/lib/splunk/.started"
