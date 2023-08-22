@@ -1,0 +1,7 @@
+---
+- name: Install and Configure Splunk 9.1
+  hosts: splunk_server_old
+  become: yes
+  roles:
+    - splunk_install
+    - splunk_config
